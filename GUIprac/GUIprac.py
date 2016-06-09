@@ -12,7 +12,7 @@ class simpleapp_tk(tkinter.Tk):
         #Set the entry variable
         #another Comment
         #yet another
-        ##
+        #One last comment
         self.entryVariable = tkinter.StringVar()
         self.entry = tkinter.Entry(self,textvariable=self.entryVariable)
         self.entry.grid(column=0,row=0,sticky='EW')
