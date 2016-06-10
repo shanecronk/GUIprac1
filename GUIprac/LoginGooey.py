@@ -1,8 +1,10 @@
-"""The Purpose Of This Class is to Create a new GUI environment for User LOGIN and REGISTRATION.
-This will be done by using (tkinter)
-Author : Shane Cronk
-Date : 6/9/2016
-"""
+###############################################################################################
+#LoginGooey.py The Purpose Of This Class is to Create a new GUI environment                   #
+#for User LOGIN and REGISTRATION                                                              #
+#This will be done by using (tkinter)                                                         #
+#Author : Shane Cronk                                                                         #
+#Date : 6/9/2016                                                                              #
+###############################################################################################
 
 import sys
 import tkinter
