@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a672bc28-9fae-4010-a389-e7ca72f23a55</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>class1.py</StartupFile>
+    <StartupFile>LoginGooey.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,11 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="class1.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Gooey.py" />
+    <Compile Include="SimpleGooey.py" />
     <Compile Include="GUIprac.py" />
+    <Compile Include="LoginGooey.py" />
+    <Compile Include="tofile.py" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -21,13 +21,15 @@ class CreateGooey(tkinter.Tk):
         tkinter.Tk.__init__(self,parent)
 
         self.parent = parent    #Keep a reference point for parent of any object
-        self._initialize()       #Initialize the GUI
+           
+        self._initialize() #Initialize the GUI
     #_initialize is used to set initial characteristics of the GUI
     def _initialize(self):
         ############################################################
         #    WINDOW SIZE AND POSITIONING AND LAYOUT                #
         #                                                          #
         ############################################################
+
 
         self.grid()             #Grid is the Layout Manager. Location is based on Column and Row values
 
@@ -38,20 +40,6 @@ class CreateGooey(tkinter.Tk):
 
         self.update()
         self.geometry(self.geometry())      #Prevents window from resizing constantly based on text entered.
-        
-        ############################################################
-        #                   ADDING LABEL                           #
-        #                                                          #
-        ############################################################
-
-        #Foreground color, background color
-        #anchor=w means text is left aligned in label
-        #textvariable = custom entered string
-        self.labelVariable = tkinter.StringVar()
-        label = tkinter.Label(self,textvariable = self.labelVariable, anchor ="w", fg ="white", bg="blue") 
-        label.grid(column=0,row=0, columnspan=2,sticky='EW')
-        self.labelVariable.set(u"Welcome To The Login Environment!")
-
 
 
         ############################################################
@@ -64,38 +52,114 @@ class CreateGooey(tkinter.Tk):
         #Create the 'Entry' widget for USERNAME
         self.uName = tkinter.Entry(self, textvariable = self.uNameVar)
         #Assign the weidget to the Grid Location
-        self.uName.grid(column = 0, row = 0,sticky = 'EW')
+        self.uName.grid(column = 0, row = 1,sticky = 'EW')
         #Bind the widget to a EVENT
-        self.uName.bind("<Return>",self.OnEnterPress)   #The event occurs when ENTER is pressed
+        self.uName.bind("<Return>",self.OnPressEnter)   #The event occurs when ENTER is pressed
         #Set the string variable for the uName widget
-        self.uName.set("USER NAME: ")
+        self.uNameVar.set("USER NAME: ")
 
         #ADDING PASS TEXT ENTRY
         self.uPassVar = tkinter.StringVar()
         #Create the 'Entry' widget for PASS
         self.uPass = tkinter.Entry(self,textvariable = self.uPassVar)
         #GRID
-        self.uPass.grid(column = 0,row = 1, sticky = 'EW')
+        self.uPass.grid(column = 0,row = 2, sticky = 'EW')
         #BIND EVENT
-        self.uPass.bind("<Return>",self.OnButtonClick)
+        self.uPass.bind("<Return>",self.OnPressEnter)
         #Set String Variable for uPASS
-        self.uPass.set("PASSWORD: ")
+        self.uPassVar.set("PASSWORD: ")
+
+        ##############################################################
+        #           ADDING THE BUTTONS                               #
+        #                                                            #
+        ##############################################################
+        
+        #Note I used a reference to the original button with 'self.submitButton'
+        #This is not required becase we will not be using the button value for anything
+        #The button simply preforms an EVENT when it is clicked. 
+
+        self.submitButton = tkinter.Button(self,text = u"SUBMIT",command=self.OnButtonClick)
+        self.submitButton.grid(column=1,row=1)
+
+        self.resetButton = tkinter.Button(self,text = u"RESET",command=self.OnButtonClick)
+        self.resetButton.grid(column = 1,row = 2)
+
+        #############################################################
+        #                   ADDING LABEL                            #
+        #                                                           #
+        #############################################################
+
+        #Foreground color, background color
+        #anchor=w means text is left aligned in label
+        #textvariable = custom entered string
+        self.labelVariable = tkinter.StringVar()
+        label = tkinter.Label(self,textvariable = self.labelVariable, anchor ="w", fg ="white", bg="blue") 
+        label.grid(column=0,row=0, columnspan=2,sticky='EW')
+        self.labelVariable.set(u"Welcome To The Login Environment!")
 
 
-       
+
+        
 
 #########################################################################################
 #       EVENT HANDLING GOES BELOW THIS LINE                                             #
 #                                                                                       #
 #########################################################################################
 
-def onButtonClick(self):
-    print ("You clicked the button!")
+    def onButtonClickSub(self):
+        print ("You clicked the button!")
 
-def onEnterPress(self):
-    print ("You pressed enter!")
+    def onButtonClickRes(self):
+        print("You reset the fields")
+
+    def onEnterPress(self,event):
+        print ("You pressed enter!")
 
 
+    def OnPressEnter(self,event):
+        self.labelVariable.set(self.uNameVar.get()+"(You pressed ENTER!)")        #Change the label to display what happened 
+        print("You Pressed Enter!")
+        self._writeFile()
+        self._readFile()
+        
+        self.uName.focus_set()
+        self.uName.select_range(0,tkinter.END)
+
+
+    def OnButtonClick(self):
+        self.labelVariable.set(self.uNameVar.get()+" (You clicked the button!)")   #Change the label to display what happened 
+        print ("You Clicked The Button! ")
+        self.uName.focus_set()
+        self.uName.select_range(0,tkinter.END)
+ 
+#########################################################################################
+#       WRITING AND READING TO/FROM A FILE                                              #
+#                                                                                       #
+#########################################################################################   
+
+    def toString(self):
+        self.toString = str(self)
+        return self.toString
+
+    def unString(self):
+        self.unString = self
+        return self.unString
+
+    def _writeFile(self):
+        #self.toString()
+        filename = input("Please input a filename: ")
+        with open("filename","a") as out_file:
+            out_file.write(self.uNameVar.get()) #Prints actual username that is in the file
+        #self.unString()
+        
+
+    def _readFile(self):
+        #self.toString()
+        filename = input("Reading file...Please input a filename: ")
+        with open("filename","rt") as in_file:
+            in_file.read(int(self.uNameVar.get()))
+        #self.unString()
+        print(self.uNameVar.get())
 
 
 #########################################################################################
@@ -103,10 +167,18 @@ def onEnterPress(self):
 #                                                                                       #
 #########################################################################################
 
-Goo = CreateGooey(None)
-Goo.title('User Page')
-Goo.geometry("270x200")
-Goo.mainloop()
+
+if __name__ == "__main__":
+    Goo = CreateGooey(None)
+    Goo.title('User Page')
+    Goo.geometry("470x200")
+    
+    Goo.mainloop()
+
+
+
+
+
 
 
 
