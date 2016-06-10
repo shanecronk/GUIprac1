@@ -30,7 +30,7 @@ class simpleapp_tk(tkinter.Tk):
         self.entryVariable = tkinter.StringVar()
         #Create the Widget
         self.entry = tkinter.Entry(self,textvariable = self.entryVariable)                
-        self.entry.grid(column=0,row=0,sticky='EW')     #Assign the Widget to the Grid location based on column and row
+        self.entry.grid(column=0,row=1,sticky='EW')     #Assign the Widget to the Grid location based on column and row
         self.entry.bind("<Return>",self.OnPressEnter)   #On ENTER press
         self.entryVariable.set(u"Enter Text Here:")     #Set the entry variable to a string
 
@@ -38,7 +38,7 @@ class simpleapp_tk(tkinter.Tk):
         #Note, we do not need to keep a reference to the button because we will not be reading or altering its value
         button = tkinter.Button(self,text = u"Click me !",command=self.OnButtonClick)#On BUTTON click
 
-        button.grid(column=1,row=0)
+        button.grid(column=1,row=1)
 
         self.labelVariable = tkinter.StringVar()
 
@@ -48,7 +48,7 @@ class simpleapp_tk(tkinter.Tk):
         label = tkinter.Label(self,textvariable = self.labelVariable, anchor ="w", fg ="white", bg="blue") #Foreground color, background color
                                                                         #anchor=w means text is left aligned in label
                                                                         #textvariable = custom entered string
-        label.grid(column=0,row=1, columnspan=2,sticky='EW')
+        label.grid(column=0,row=0, columnspan=2,sticky='EW')
         self.labelVariable.set(u"Hello!")
         
         #ENABLE RESIZING
@@ -82,4 +82,5 @@ class simpleapp_tk(tkinter.Tk):
 if __name__ == "__main__":
     app = simpleapp_tk(None)
     app.title('My Created Application')
+    app.geometry("270x100")
     app.mainloop()
