@@ -112,10 +112,6 @@ class CreateGooey(tkinter.Tk):
     def onButtonClickRes(self):
         print("You reset the fields")
 
-    def onEnterPress(self,event):
-        print ("You pressed enter!")
-
-
     def OnPressEnter(self,event):
         self.labelVariable.set(self.uNameVar.get()+"(You pressed ENTER!)")        #Change the label to display what happened 
         print("You Pressed Enter!")
@@ -157,7 +153,7 @@ class CreateGooey(tkinter.Tk):
         #self.toString()
         filename = input("Reading file...Please input a filename: ")
         with open(filename,"rt") as in_file:
-            in_file.read(int(self.uNameVar.get()))
+            in_file.read() 
         #self.unString()
         print(self.uNameVar.get())
 
