@@ -147,8 +147,8 @@ class CreateGooey(tkinter.Tk):
 
     def _writeFile(self):
         #self.toString()
-        filename = input("Please input a filename: ")
-        with open("filename","a") as out_file:
+        filename = input("Please input a filename including file extension: ")
+        with open(filename,"a") as out_file:
             out_file.write(self.uNameVar.get()) #Prints actual username that is in the file
         #self.unString()
         
@@ -156,7 +156,7 @@ class CreateGooey(tkinter.Tk):
     def _readFile(self):
         #self.toString()
         filename = input("Reading file...Please input a filename: ")
-        with open("filename","rt") as in_file:
+        with open(filename,"rt") as in_file:
             in_file.read(int(self.uNameVar.get()))
         #self.unString()
         print(self.uNameVar.get())
